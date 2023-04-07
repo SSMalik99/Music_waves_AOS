@@ -1,4 +1,6 @@
 package com.example.music_waves_aos
 
-class Welcome {
+import androidx.appcompat.app.AppCompatActivity
+
+class Welcome:  AppCompatActivity() {
 }

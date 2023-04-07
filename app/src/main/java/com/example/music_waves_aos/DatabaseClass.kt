@@ -19,8 +19,13 @@ class DatabaseClass(context:Context?) : SQLiteOpenHelper(context,"login1.db",nul
         val contentValues = ContentValues()
         contentValues.put("email", email)
         contentValues.put("password", password)
-        val result = sqLiteDatabase.insert("email", null, contentValues)
-        return result != -1L
+        val result = sqLiteDatabase.insert("user", null, contentValues)
+        if(result.toInt() == -1){
+            return false
+        }
+
+        return true
+
     }
 
     fun CheckEmail(email: String): Boolean {

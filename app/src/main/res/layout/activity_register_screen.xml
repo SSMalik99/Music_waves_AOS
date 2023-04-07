@@ -31,7 +31,7 @@
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="62dp"
-            android:layout_marginStart="172dp"
+            android:layout_marginStart="155dp"
             android:layout_marginTop="43dp"
             android:text="Register"
             android:textSize="22sp" />
@@ -45,7 +45,7 @@
             android:background="@color/white"
             android:ems="10"
             android:inputType="text"
-            android:text="Email"
+            android:hint=" Email "
             android:textSize="22sp"
             tools:ignore="TextFields" />
 

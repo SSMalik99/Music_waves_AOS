@@ -9,18 +9,21 @@ import android.widget.EditText
 import android.widget.Toast
 
 class RegisterScreen : AppCompatActivity() {
-
-
+      var email: EditText? = null
+      var password: EditText? = null
+      var confirm_password: EditText? = null
+      var login: Button? = null
+      var register_button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_screen)
         val databaseClass = DatabaseClass(this)
-        val email = findViewById<View>(R.id.email) as EditText
-        val password = findViewById<View>(R.id.password) as EditText
-        val confirm_password = findViewById<View>(R.id.confirm_password) as EditText
-        val register_button = findViewById<View>(R.id.register_button) as Button
-        val login = findViewById<View>(R.id.login) as Button
-        login!!.setOnClickListener {
+         email = findViewById<View>(R.id.email) as EditText
+         password = findViewById<View>(R.id.password) as EditText
+         confirm_password = findViewById<View>(R.id.confirm_password) as EditText
+         register_button = findViewById<View>(R.id.register_button) as Button
+         login = findViewById<View>(R.id.login) as Button
+         login!!.setOnClickListener {
             val intent = Intent(this@RegisterScreen, MainActivity::class.java)
             startActivity(intent)
         }
@@ -38,7 +41,7 @@ class RegisterScreen : AppCompatActivity() {
                         if (insert == true) {
                             Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT)
                                 .show()
-                            email!!.setText("")
+                            email?.setText("")
                             password!!.setText("")
                             confirm_password!!.setText("")
                         }
@@ -58,9 +61,15 @@ class RegisterScreen : AppCompatActivity() {
                 }
             }
         }
+
+        login!!.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
     }
-}
 
-private fun String.setText(s: String) {
+    private fun String.setText(s: String) {
 
+    }
 }

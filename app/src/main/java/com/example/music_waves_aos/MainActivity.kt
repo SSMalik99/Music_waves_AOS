@@ -7,10 +7,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import javax.xml.validation.Validator
 
 class MainActivity : AppCompatActivity() {
+
     var email: EditText? = null
-    var password:EditText? = null
+    var password: EditText? = null
     var register: Button? = null
     var login_button: Button? = null
 
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             val checklogin = databaseClass!!.CheckLogin(email, password)
             if (checklogin) {
                 //Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                val i = Intent(applicationContext, Welcome::class.java)
+                val i = Intent(applicationContext, ProfilePage::class.java)
                 startActivity(i)
             } else {
                 Toast.makeText(
@@ -44,6 +46,11 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-    }
+        register!!.setOnClickListener {
+            val intent = Intent(this, RegisterScreen::class.java)
+            startActivity(intent)
 
+        }
+
+    }
 }
