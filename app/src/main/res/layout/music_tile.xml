@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:padding="10dp"
+    android:id="@+id/musicTileContainer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15sp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/tile_border"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/meditationalMusicTitle"
+            android:text="Title"
+            android:textSize="24dp"
+            android:textColor="@color/material_dynamic_primary10"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_gravity="fill_horizontal"
+            android:background="@color/material_dynamic_primary10"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Track"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+
+            android:textColor="@color/material_dynamic_primary10"
+            android:id="@+id/meditationalMusicTrack"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

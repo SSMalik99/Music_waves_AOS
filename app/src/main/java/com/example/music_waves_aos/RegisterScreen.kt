@@ -3,73 +3,95 @@ package com.example.music_waves_aos
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.example.music_waves_aos.databinding.ActivityMainBinding
+import com.example.music_waves_aos.databinding.ActivityRegisterScreenBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class RegisterScreen : AppCompatActivity() {
-      var email: EditText? = null
-      var password: EditText? = null
-      var confirm_password: EditText? = null
-      var login: Button? = null
-      var register_button: Button? = null
+      private lateinit var email: EditText
+      private lateinit var password: EditText
+      private lateinit var confirm_password: EditText
+
+      lateinit var binding : ActivityRegisterScreenBinding
+      private lateinit var auth: FirebaseAuth
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_screen)
-        val databaseClass = DatabaseClass(this)
-         email = findViewById<View>(R.id.email) as EditText
-         password = findViewById<View>(R.id.password) as EditText
-         confirm_password = findViewById<View>(R.id.confirm_password) as EditText
-         register_button = findViewById<View>(R.id.register_button) as Button
-         login = findViewById<View>(R.id.login) as Button
-         login!!.setOnClickListener {
-            val intent = Intent(this@RegisterScreen, MainActivity::class.java)
-            startActivity(intent)
-        }
-        register_button!!.setOnClickListener {
-            val email = email!!.text.toString()
-            val password = password!!.text.toString()
-            val confirm_password = confirm_password!!.text.toString()
-            if (email == "" || password == "" || confirm_password == "") {
-                Toast.makeText(applicationContext, "Fields Required", Toast.LENGTH_SHORT).show()
+        binding = ActivityRegisterScreenBinding.inflate(layoutInflater)
+        val view = binding.root
+         email = binding.email
+         password = binding.password
+         confirm_password = binding.confirmPassword
+
+         auth = Firebase.auth
+
+        binding.registerButton.setOnClickListener {
+
+            if (email.text.toString() == "" || password.text.toString() == "" || confirm_password.text.toString() == "") {
+                createAlert("Please Insert value for each field.")
+
             } else {
-                if (password == confirm_password) {
-                    val checkemail: Boolean = databaseClass.CheckEmail(email)
-                    if (checkemail == true) {
-                        val insert: Boolean = databaseClass.Insert(email, password)
-                        if (insert == true) {
-                            Toast.makeText(applicationContext, "Registered", Toast.LENGTH_SHORT)
-                                .show()
-                            email?.setText("")
-                            password!!.setText("")
-                            confirm_password!!.setText("")
-                        }
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "Email already taken",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+
+                if (password.text.toString() == confirm_password.text.toString()) {
+
+                    firebaseRegister()
+
                 } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Password does not match",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                   createAlert("Password Doesn't Match")
                 }
             }
         }
 
-        login!!.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-
+        binding.login.setOnClickListener {
+            goToLoginPage()
         }
+
+        setContentView(view)
     }
 
-    private fun String.setText(s: String) {
+    private fun goToLoginPage() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 
+    private fun firebaseRegister() {
+
+        auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("UserCreation Succesfull", "createUserWithEmail:success")
+                    val user = auth.currentUser
+
+                    val builder = AlertDialog.Builder(this)
+                    builder.setMessage("You are register successfully You can login now.").setNegativeButton("Ok") { _, _ ->
+                        goToLoginPage()
+                    }
+                    builder.create()
+                    builder.show()
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("Registration Failed", "createUserWithEmail:failure", task.exception)
+                    createAlert("Registration failed, Please Try later")
+
+                }
+            }
+
+    }
+    fun createAlert(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message).setNegativeButton("Ok") { _, _ -> }
+        builder.create()
+        builder.show()
     }
 }

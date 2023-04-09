@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "811533394260",
+    "project_id": "musicwaveios",
+    "storage_bucket": "musicwaveios.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811533394260:android:ee197375afd7707c20e8c1",
+        "android_client_info": {
+          "package_name": "com.example.music_waves_aos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811533394260-hl3smbj2cvgu6udc8sic19cgrqn8jolq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaJxu5XHw7DzmTTuar6EtU5WxGjMgwT7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811533394260-hl3smbj2cvgu6udc8sic19cgrqn8jolq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "811533394260-ulagqf5l75ll52pklks75h2ts5hn0uc7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ca.georgian.saravjeetsingh.Music-waves"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/meditationalMusicFragment">
+
+
+    <fragment
+        android:id="@+id/meditationalMusicFragment"
+        android:name="com.example.music_waves_aos.meditational_music.MeditationalMusicFragment"
+        android:label="fragment_meditational_music"
+        tools:layout="@layout/fragment_meditational_music" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.music_waves_aos.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
