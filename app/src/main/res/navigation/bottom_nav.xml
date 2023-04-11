@@ -9,11 +9,33 @@
     <fragment
         android:id="@+id/meditationalMusicFragment"
         android:name="com.example.music_waves_aos.meditational_music.MeditationalMusicFragment"
-        android:label="fragment_meditational_music"
-        tools:layout="@layout/fragment_meditational_music" />
+        android:label="Music Wave"
+        tools:layout="@layout/fragment_meditational_music" >
+
+        <action
+            android:id="@+id/action_meditationalMusicFragment_to_trackDetailFragment"
+            app:destination="@id/trackDetailFragment" >
+            <argument
+                android:defaultValue="1"
+                android:name="trackId"
+                app:argType="integer"
+                />
+
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.music_waves_aos.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/trackDetailFragment"
+        android:name="com.example.music_waves_aos.meditational_music.TrackDetailFragment"
+        android:label="Meditational Music"
+        tools:layout="@layout/fragment_track_detail" >
+        <action
+            android:id="@+id/action_trackDetailFragment_to_meditationalMusicFragment"
+            app:destination="@id/meditationalMusicFragment" />
+    </fragment>
+
 </navigation>

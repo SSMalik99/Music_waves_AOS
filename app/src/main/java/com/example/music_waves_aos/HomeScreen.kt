@@ -2,13 +2,16 @@ package com.example.music_waves_aos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.music_waves_aos.databinding.ActivityHomeScreenBinding
 import com.example.music_waves_aos.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
 class HomeScreen : AppCompatActivity() {
@@ -27,6 +30,7 @@ class HomeScreen : AppCompatActivity() {
 
 
 
+
         setupNavigation()
 
         setContentView(view)
@@ -38,6 +42,19 @@ class HomeScreen : AppCompatActivity() {
         navController = navHostFragment.navController
 
         binding.bottomNavigation.setupWithNavController(navController)
+        setupActionBarWithNavController(navController)
+
+        //Showing bottom navigation only for the main screens, and hiding for details screens
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            if (nd.id == R.id.trackDetailFragment ) {
+                binding.bottomNavigation.visibility = View.GONE
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+            else {
+                binding.bottomNavigation.visibility = View.VISIBLE
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+        }
 
 //        setupWithNavController(bottomNavigationView, navController)
 //        setupActionBarWithNavController(navController)

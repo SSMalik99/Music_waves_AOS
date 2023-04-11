@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.music_waves_aos.R
 import kotlin.math.log
@@ -35,6 +36,7 @@ class MeditationalMusicAdapter (
 //        Glide.with(this.context).load(product.image).into(holder.productImage);
         holder.musicTrack.text = track.track
         holder.musicTitle.text = track.title
+        holder.trackId = track.id
 
 
     }
@@ -46,16 +48,18 @@ class MeditationalMusicAdapter (
 
 class MyViewHolder(val view: View) :RecyclerView.ViewHolder(view){
 
-    val listContainer = view.findViewById<CardView>(R.id.musicTileContainer)!!
+    private val listContainer = view.findViewById<CardView>(R.id.musicTileContainer)!!
 
-    val musicTitle = view.findViewById<TextView>(R.id.meditationalMusicTitle)
-    val musicTrack = view.findViewById<TextView>(R.id.meditationalMusicTrack)
+    val musicTitle = view.findViewById<TextView>(R.id.meditationalMusicTitle)!!
+    val musicTrack = view.findViewById<TextView>(R.id.meditationalMusicTrack)!!
+    var trackId = 0
 
     init {
         // Define click listener for the ViewHolder's View.
         listContainer.setOnClickListener{
 //            view.findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToProductDetailFragment(productId))
             Log.i("recylceViewClick","Clicked from reculcerview")
+            view.findNavController().navigate(MeditationalMusicFragmentDirections.actionMeditationalMusicFragmentToTrackDetailFragment(trackId))
         }
     }
 
