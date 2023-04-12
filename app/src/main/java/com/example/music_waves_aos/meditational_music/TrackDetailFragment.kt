@@ -46,12 +46,18 @@ class TrackDetailFragment : Fragment() {
         val resourceId = resources.getIdentifier(track.image, "drawable", context?.packageName)
         binding.trackImageView.setBackgroundResource(resourceId)
 
+        binding.playButton.setOnClickListener{
+//            TrackDetailFragmentDirections.actionTrackDetailFragmentToPlayTrackMusicFragment()
+
+            findNavController().navigate(TrackDetailFragmentDirections.actionTrackDetailFragmentToPlayTrackFragment(trackId))
+        }
+
 
 
         binding.viewAllButton.setOnClickListener{
 //            view.findNavController().navigate(R.id.meditationalMusicFragment)
 
-            findNavController().navigateUp()
+            findNavController().navigate(TrackDetailFragmentDirections.actionTrackDetailFragmentToMeditationalMusicFragment())
         }
 
 

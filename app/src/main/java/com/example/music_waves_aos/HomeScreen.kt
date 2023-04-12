@@ -46,7 +46,7 @@ class HomeScreen : AppCompatActivity() {
 
         //Showing bottom navigation only for the main screens, and hiding for details screens
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.trackDetailFragment ) {
+            if (nd.id == R.id.trackDetailFragment || nd.id == R.id.playTrackFragment ) {
                 binding.bottomNavigation.visibility = View.GONE
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }

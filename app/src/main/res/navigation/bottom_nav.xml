@@ -28,14 +28,44 @@
         android:name="com.example.music_waves_aos.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
     <fragment
         android:id="@+id/trackDetailFragment"
         android:name="com.example.music_waves_aos.meditational_music.TrackDetailFragment"
         android:label="Meditational Music"
         tools:layout="@layout/fragment_track_detail" >
+
         <action
             android:id="@+id/action_trackDetailFragment_to_meditationalMusicFragment"
             app:destination="@id/meditationalMusicFragment" />
+
+
+        <action
+            android:id="@+id/action_trackDetailFragment_to_playTrackFragment"
+            app:destination="@id/playTrackFragment">
+
+            <argument
+                android:defaultValue="1"
+                android:name="trackId"
+                app:argType="integer"
+                />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/playTrackFragment"
+        android:name="com.example.music_waves_aos.meditational_music.PlayTrackFragment"
+        android:label="Music Wave"
+        tools:layout="@layout/fragment_play_track" >
+        <action
+            android:id="@+id/action_playTrackFragment_to_trackDetailFragment"
+            app:destination="@id/trackDetailFragment" >
+            <argument
+                android:defaultValue="1"
+                android:name="trackId"
+                app:argType="integer"
+                />
+        </action>
     </fragment>
 
 </navigation>
